@@ -13,7 +13,7 @@ let archive = archiver('zip', {
 });
 
 output.on('close', () => {
-    console.log('Packing process finished.');
+    console.log('Packaging process finished.');
     console.log('File:', output.path);
     console.log('Bytes: ', archive.pointer());
 });
