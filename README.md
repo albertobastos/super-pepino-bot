@@ -1,6 +1,6 @@
 SuperPepinoBot is a Telegram Bot implemented to run as an AWS Lambda Function.
 
-It replies to chat messages that match any of the configured suffixes.
+It replies any chat message that matches one of the configured suffixes.
 
 Just for fun!
 
