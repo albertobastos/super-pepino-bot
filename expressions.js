@@ -17,7 +17,7 @@ function pickResponse(suffix, word) {
     by a blank space, comma, question mark, end of sentence, etc.
 */
 function createRegex(suffix) {
-    return new RegExp('(\\w)*' + suffix + '(?!\\w)', 'i');
+    return new RegExp('(\\w)+' + suffix + '(?!\\w)', 'i');
 }
 
 String.prototype.replaceAll = function(search, replacement) {
