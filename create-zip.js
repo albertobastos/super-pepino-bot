@@ -1,4 +1,4 @@
-const ZIP_ENTRIES = ['config.js', 'config.local.js', 'expressions.js', 'index.js', 'node_modules'];
+const ZIP_ENTRIES = ['config.js', 'config.local.js', 'suffixes.local.js', 'expressions.js', 'index.js', 'node_modules'];
 let OUTPUT_DIR = __dirname + '/dist/';
 let OUTPUT_FILENAME = OUTPUT_DIR + 'SuperPepinoBot.zip';
 
