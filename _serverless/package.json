@@ -4,7 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "test",
+    "test": "node testRules",
+    "set-hook": "node setBotWebhook",
     "deploy": "serverless deploy -r eu-west-1",
     "deploy-prod": "serverless deploy -r eu-west-1 -s prod"
   },

@@ -12,7 +12,7 @@ function findResponse(input) {
             let match = matcher.exec(input);
             if(match) { // match found...
                 let matchedWord = match[0].trim();
-                if(!rule.exclusions || !rule.exclusions.find(s => s == matchedWord)) { // ... and the matched word isn't excluded, we have a winner!
+                if(!isExclusion(rule, matchedWord)) { // ... and the matched word isn't excluded, we have a winner!
                     let responseTpl = rule.responses.pickRandom();
                     return fillResponse(responseTpl, matchedWord);
                 }
@@ -23,9 +23,21 @@ function findResponse(input) {
     return null; // no match found
 }
 
-function fillResponse(tpl, word) {
-    return tpl; // TODO: replace the word!
+// Determines if the word in included within the rule's exclusions
+function isExclusion(rule, word) {
+    let exclusions = rule.exclusions || [];
+    return exclusions.findIndex(excl => excl.toUpperCase() === word.toUpperCase()) >= 0;
 }
+
+// Fills the response template with the allowed placeholders based on the input
+function fillResponse(tpl, word) {
+    return tpl
+            .replaceAll('\\{\\{W\\}\\}', word.capitalize())
+            .replaceAll('\\{\\{WQ\\}\\}', `¿${word.capitalize()}?`)
+            .replaceAll('\\{\\{w\\}\\}', word.toLowerCase())
+            .replaceAll('\\{\\{wq\\}\\}', `¿${word.toLowerCase()}?`);
+}
+
 
 // Some polyfills, can't believe JS doesn't include them natively yet!
 
