@@ -11,7 +11,14 @@ if(require.main === module) { // invoked from command line
         'No le pones suficiente ahínco.': true,
         'Me conformo con sacar un 5.': true,
         'Me afeito cada domingo.': false,
-        'Podemos estar hasta el infinito': true
+        'Podemos estar hasta el infinito': true,
+        '¿Iréis a la fiesta?': true,
+        '¿Y si digo 15?': false,
+        '¿Y si digo 39145?': true,
+        '¿Y si digo 39115?': false,
+        '¿Y si digo 8?': true,
+        '¿Y si digo 12345678?': true,
+        '¿Y qué pasa con TAB?': true
     };
 
     Object.keys(inputs).forEach(input => {
