@@ -5,7 +5,8 @@
   "main": "handler.js",
   "scripts": {
     "test": "test",
-    "deploy": "serverless deploy -r eu-west-1"
+    "deploy": "serverless deploy -r eu-west-1",
+    "deploy-prod": "serverless deploy -r eu-west-1 -s prod"
   },
   "keywords": [
     "telegram",

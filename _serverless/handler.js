@@ -1,20 +1,23 @@
 'use strict';
 
+/*
+  Just a basic ping to acknowledge if system is alive.
+*/
 module.exports.ping = (event, context, callback) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'pong!',
-      input: event,
+      message: 'pong!'
     }),
   };
 
   callback(null, response);
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
 };
 
+/*
+  Receives a Telegram Bot message incoming event and, if the message contents
+  matches any rule, sends a response to the author.
+*/
 module.exports.message = (event, context, callback) => {
   const response = {
     statusCode: 200,
