@@ -28,6 +28,7 @@ module.exports.message = (event, context, callback) => {
 
     let responseMsg = ruleProcessor.findResponse(message.text);
     if(responseMsg) {
+      console.log('preparing reply', 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
       bot.sendReply(message.chat.id, message.message_id, responseMsg).then(
         result => { callback(null, { statusCode: 200 }); },
         err => {
