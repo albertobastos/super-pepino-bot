@@ -1,0 +1,18 @@
+{
+  "name": "super-pepino-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "test",
+    "deploy": "serverless deploy -r eu-west-1"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "pepino",
+    "serverless"
+  ],
+  "author": "Alberto Bastos",
+  "license": "ISC"
+}
