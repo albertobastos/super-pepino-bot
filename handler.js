@@ -23,9 +23,12 @@ module.exports.ping = (event, context, callback) => {
 */
 module.exports.message = (event, context, callback) => {
   try {
-    let responseMsg = ruleProcessor.findResponse(event.message.text);
+    let body = JSON.parse(event.body || {});
+    let message = body.message || {};
+
+    let responseMsg = ruleProcessor.findResponse(message.text);
     if(responseMsg) {
-      bot.sendReply(event.message.chat.id, event.message.message_id, responseMsg).then(
+      bot.sendReply(message.chat.id, message.message_id, responseMsg).then(
         result => { callback(null, { statusCode: 200 }); },
         err => {
           console.log(err);

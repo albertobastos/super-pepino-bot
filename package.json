@@ -1,18 +1,23 @@
 {
-  "name": "super-pepino-telegram-bot",
+  "name": "super-pepino-bot",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "Alberto Bastos",
-  "license": "MIT",
-  "dependencies": {
-    "archiver": "^2.1.0",
-    "node-telegram-bot-api": "^0.28.0",
-    "shelljs": "^0.7.8"
-  },
+  "description": "",
+  "main": "handler.js",
   "scripts": {
-    "hook": "node setWebhook",
-    "zip": "node create-zip",
-    "expressions": "node expressions",
-    "test": "node test"
+    "test": "node testRules",
+    "set-hook": "node setBotWebhook",
+    "deploy": "serverless deploy",
+    "deploy-prod": "serverless deploy -s prod"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "pepino",
+    "serverless"
+  ],
+  "author": "Alberto Bastos",
+  "license": "ISC",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.28.0"
   }
 }

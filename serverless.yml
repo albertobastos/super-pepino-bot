@@ -11,7 +11,8 @@
 #
 # Happy Coding!
 
-service: SuperPepinoBot-serverless # NOTE: update this with your service name
+service: SuperPepinoBot # NOTE: update this with your service name
+
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -20,6 +21,8 @@ service: SuperPepinoBot-serverless # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs6.10
+  stage: dev
+  region: eu-west-1
 
 # you can overwrite defaults here
 #  stage: dev

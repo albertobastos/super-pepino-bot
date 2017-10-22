@@ -9,7 +9,7 @@ function findResponse(input) {
 
     for(let rule of rules) {
         for(let matcher of rule.matchers) {
-            let match = matcher.exec(input);
+            let match = matcher().exec(input);
             if(match) { // match found...
                 let matchedWord = match[0].trim();
                 if(!isExclusion(rule, matchedWord)) { // ... and the matched word isn't excluded, we have a winner!

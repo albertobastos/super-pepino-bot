@@ -1,3 +1,10 @@
-node_modules/
-*.local.js
-dist/
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Private config files
+config.js
+rules.js
