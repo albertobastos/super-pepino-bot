@@ -27,12 +27,16 @@ module.exports = [
     */
 ];
 
-// Creates a RegExp that matches words ending with -suffix
+// Creates a RegExp-builder function that matches words ending with -suffix
 function suffix(suffix) {
-    return new RegExp(`([\\wáéíóúñ])+${suffix}(?!\\w)`, 'i');
+    return function() {
+        return new RegExp(`([\\wáéíóúñ])+${suffix}(?!\\w)`, 'i');
+    }
 }
 
-// Creates a RegExp that matches the exact word str
+// Creates a RegExp-builder function that matches the exact word str
 function exact(str) {
-    return new RegExp(`(^|\\s)${str}(?!\\w)`, 'i');
+    return function() {
+        return new RegExp(`(^|\\s)${str}(?!\\w)`, 'i');
+    }
 }
