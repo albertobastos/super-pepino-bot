@@ -1,15 +1,18 @@
-SuperPepinoBot is a Telegram Bot implemented to run as an AWS Lambda Function.
+SuperPepinoBot
 
-It replies any chat message that matches one of the configured suffixes.
+A just-for-fun Telegram Bot who listens to all messages within a chat or group and replies -usually in a rude way- those that match any of the pre-established rules.
 
-Just for fun!
+If you speak Spanish, haven't you heard the expression: "¿5? ¡Por el culo te la hinco!". Well, that is what this bot does.
 
-It is recommended to use yarn instead of npm to avoid problems with the dependency mess Node.js is nowadays.
+Implemented with Node.js and mantained with the Serverless Framework so configuration and deploys at the AWS Lambda and AWS API Gateway services can be automatized.
 
-Remember to create your own config.local.js file before running anything!
+Some very ill-organized instructions:
 
-npm commands:
-- setWebhook: configures the Telegram BOT to use the configured AWS API Gateway webhook.
-- expressions: runs a basic test for the configured suffixes.
-- test: runs a basic test for the bot (it will fail anyway because of the invalid chat ID).
-- zip: creates a dist/SuperPepinoBot.zip ready to upload as an AWS Lambda funcion.
+- Use serverless commands to login and configure your AWS credentials.
+- Go to Telegram's BotFather, create a bot and write down your new bot token.
+- Create both config.js and rules.js files using the .sample.js available as a template. Fill the config.token attribute with your own.
+- Edit rules.js to add your own rules. Some inline comments there can give you a hint on how to do that.
+- Use testRules.js and "yarn run test" to test your rule matches.
+- Execute "yarn run deploy" to update your service at AWS (development stage).
+- Execute "yarn run deploy-prod" to update your service at AWS (production stage, be careful!).
+- Use config.webhook and "yarn run set-hook" to update your bot's webhook URL with the one returned by serverless after each deploy.

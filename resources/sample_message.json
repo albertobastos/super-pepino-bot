@@ -1,0 +1,21 @@
+{
+   "update_id":41718865,
+   "message":{
+      "message_id":3,
+      "from":{
+         "id":4319093,
+         "is_bot":false,
+         "first_name":"Alberto",
+         "last_name":"Bastos",
+         "language_code":"es"
+      },
+      "chat":{
+         "id":4319093,
+         "first_name":"Alberto",
+         "last_name":"Bastos",
+         "type":"private"
+      },
+      "date":1508661195,
+      "text":"camino?"
+   }
+}
