@@ -1,3 +1,4 @@
+/*
 let aws = require('./index');
 
 let event = {
@@ -28,3 +29,20 @@ let context = {
 };
 
 aws.handler(event, context);
+*/
+
+
+const rules = require('./expressions');
+
+// some basic test if called from command-line
+// > node test
+if(require.main === module) {
+    let inputs = [
+        'dibújame un rectángulo'
+    ];
+
+    inputs.forEach(input => {
+        let response = rules.findResponse(input);
+        console.log(input, '==>', response);
+    });
+}

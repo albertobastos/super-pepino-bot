@@ -17,7 +17,7 @@ function pickResponse(suffix, word) {
     by a blank space, comma, question mark, end of sentence, etc.
 */
 function createRegex(suffix) {
-    return new RegExp('(\\w)+' + suffix + '(?!\\w)', 'i');
+    return new RegExp('([\\wáéíóúàèìòù])+' + suffix + '(?!\\w)', 'i');
 }
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -49,22 +49,3 @@ module.exports.findResponse = (input) => {
 
     return null;
 };
-
-// some basic test if called from command-line
-// > node expressions
-if(require.main === module) {
-    let inputs = [
-        'vaya minino', 
-        'un latino con barba',
-        'camino',
-        '¿Alguien a visto a Tino?'
-    ];
-
-    inputs.forEach(input => {
-        let response = module.exports.findResponse(input);
-        console.log(input, '==>', response);
-    });
-
-    console.log();
-    console.log(Object.keys(suffixes).length, 'sufijos configurados');
-}
