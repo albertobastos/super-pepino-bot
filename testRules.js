@@ -3,14 +3,23 @@
 const ruleProcessor = require('./ruleProcessor');
 
 if(require.main === module) { // invoked from command line
-    let inputs = [
-        '¿Alguien conoce el camino?',
-        'Para pasar el rato está bien.',
-        '¡No eran 13 apóstoles, eran 12!',
-        'Me comería un pepino ahora mismo.',
-        'No le pones suficiente ahínco.',
-        'Me conformo con sacar un 5.'
-    ];
+    let inputs = {
+        '¿Alguien conoce el camino?': true,
+        'Para pasar el rato está bien.': true,
+        '¡No eran 13 apóstoles, eran 12!': true,
+        'Me comería un pepino ahora mismo.': false,
+        'No le pones suficiente ahínco.': true,
+        'Me conformo con sacar un 5.': true,
+        'Me afeito cada domingo.': false,
+        'Podemos estar hasta el infinito': true
+    };
 
-    inputs.forEach(input => console.log(input, '==>', ruleProcessor.findResponse(input)));
+    Object.keys(inputs).forEach(input => {
+        let response = ruleProcessor.findResponse(input);
+        if((inputs[input] && response) || (!inputs[input] && !response)) {
+            console.log('[OK]\t', input, '==>', response);
+        } else {
+            console.error('[NOOK]\t', input, '==>', response);
+        }
+    });
 }
