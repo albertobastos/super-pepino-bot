@@ -4,6 +4,9 @@ const rules = require('./rules');
 
 module.exports.findResponse = findResponse;
 
+/**
+ * Given a message input, searches for a rule matching any text on it and returns one of the configured responses.
+ */
 function findResponse(input) {
     if(!input) return;
 
