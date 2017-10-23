@@ -24,18 +24,19 @@ function testRules() {
 }
 
 function testHandler() {
+    let botWasCalled = false;
     mock('./config', {
         ratio: 1
     });
     mock('./bot', {
-        sendReplySync: () => 'dummy_response'
+        sendReplySync: () => { botWasCalled = true; }
     });
     const handler = require('./handler');
     
     let event = {
         body: JSON.stringify({
             message: {
-                text: '5', // we don't mind if it matches
+                text: '5', // one that matches
                 chat: {
                     id: 1
                 },
@@ -44,8 +45,9 @@ function testHandler() {
         })
     };
     let callback = (err, result) => {
-        if(err) { console.log('[NOOK]\t', err)}
-        else    { console.log('[OK]\t', result); }
+        if(err)                 console.log('[NOOK]\t', err);
+        else if(!botWasCalled)  console.log('[NOOK]\t', 'Bot was not called');
+        else                    console.log('[OK]\t', result);
         mock.stopAll();
     };
 
