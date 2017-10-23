@@ -1,6 +1,6 @@
 "use strict";
 
-const rules = require('./rules');
+const rules = require('./rules').rules;
 
 module.exports.findResponse = findResponse;
 

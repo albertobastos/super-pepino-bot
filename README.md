@@ -11,8 +11,8 @@ Some very ill-organized instructions:
 - Use serverless commands to login and configure your AWS credentials.
 - Go to Telegram's BotFather, create a bot and write down your new bot token.
 - Create both config.js and rules.js files using the .sample.js available as a template. Fill the config.token attribute with your own.
-- Edit rules.js to add your own rules. Some inline comments there can give you a hint on how to do that.
-- Use testRules.js and "yarn run test" to test your rule matches.
+- Edit rules.js to add your own rules. Some inline comments there can give you a hint on how to do that. Also add some test inputs.
+- Use "yarn run test" to test both the handler and the set of rules you have filled.
 - Execute "yarn run deploy" to update your service at AWS (development stage).
 - Execute "yarn run deploy-prod" to update your service at AWS (production stage, be careful!).
 - Use config.webhook and "yarn run set-hook" to update your bot's webhook URL with the one returned by serverless after each deploy.

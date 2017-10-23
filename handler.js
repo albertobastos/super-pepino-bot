@@ -2,6 +2,7 @@
 
 const ruleProcessor = require('./ruleProcessor');
 const bot = require('./bot');
+const config = require('./config');
 
 /*
   Just a basic ping to acknowledge if system is alive.
@@ -28,14 +29,18 @@ module.exports.message = (event, context, callback) => {
 
     let responseMsg = ruleProcessor.findResponse(message.text);
     if(responseMsg) {
-      console.log('preparing reply', 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
-      bot.sendReply(message.chat.id, message.message_id, responseMsg).then(
-        result => { callback(null, { statusCode: 200 }); },
-        err => {
-          console.log(err);
-          callback(err, { statusCode: 500 });
-        }
-      );
+      if(Math.random() <= config.ratio) {
+        console.log('preparing reply', 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
+        bot.sendReply(message.chat.id, message.message_id, responseMsg).then(
+          result => { callback(null, { statusCode: 200 }); },
+          err => {
+            console.log(err);
+            callback(err, { statusCode: 500 });
+          }
+        );
+      } else {
+        console.log('match found, but response discarted', 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
+      }
     } else {
       callback(null, { statusCode: 200 });
     }
