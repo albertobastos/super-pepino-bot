@@ -29,8 +29,9 @@ module.exports.message = (event, context, callback) => {
 
     let responseMsg = ruleProcessor.findResponse(message.text);
     if(responseMsg) {
-      if(Math.random() <= config.ratio) {
-        console.log('preparing reply', 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
+      let prob = Math.random();
+      if(prob <= config.ratio) {
+        console.log('preparing reply', 'ratio', config.ratio, prob, 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
         bot.sendReply(message.chat.id, message.message_id, responseMsg).then(
           result => { callback(null, { statusCode: 200 }); },
           err => {
@@ -39,7 +40,8 @@ module.exports.message = (event, context, callback) => {
           }
         );
       } else {
-        console.log('match found, but response discarted', 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
+        console.log('match found, but response discarted', 'ratio', config.ratio, prob, 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
+        callback(null, { statusCode: 200 });
       }
     } else {
       callback(null, { statusCode: 200 });
