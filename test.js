@@ -1,9 +1,6 @@
 'use strict';
 
-const ruleProcessor = require('./ruleProcessor');
-const handler = require('./handler');
-const bot = require('./bot');
-const rulesTests = require('./rules').tests;
+const mock = require('mock-require');
 
 if(require.main === module) { // invoked from command line
     testRules();
@@ -11,10 +8,13 @@ if(require.main === module) { // invoked from command line
 }
 
 function testRules() {
+    const inputs = require('./rules').tests;
+    const ruleProcessor = require('./ruleProcessor');
+
     console.log('Rules:\n');
-    Object.keys(rulesTests).forEach(input => {
+    Object.keys(inputs).forEach(input => {
         let response = ruleProcessor.findResponse(input);
-        if((rulesTests[input] && response) || (!rulesTests[input] && !response)) {
+        if((inputs[input] && response) || (!inputs[input] && !response)) {
             console.log('[OK]\t', input, '==>', response);
         } else {
             console.error('[NOOK]\t', input, '==>', response);
@@ -24,6 +24,14 @@ function testRules() {
 }
 
 function testHandler() {
+    mock('./config', {
+        ratio: 1
+    });
+    mock('./bot', {
+        sendReplySync: () => 'dummy_response'
+    });
+    const handler = require('./handler');
+    
     let event = {
         body: JSON.stringify({
             message: {
@@ -38,10 +46,8 @@ function testHandler() {
     let callback = (err, result) => {
         if(err) { console.log('[NOOK]\t', err)}
         else    { console.log('[OK]\t', result); }
+        mock.stopAll();
     };
-    bot.sendReply = function(chatId, messageId, text) {
-        return Promise.resolve('dummy_response');
-    }
 
     console.log('Handler:\n');
     handler.message(event, null, callback); // context is not used

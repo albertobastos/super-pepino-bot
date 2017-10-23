@@ -23,31 +23,36 @@ module.exports.ping = (event, context, callback) => {
   matches any rule, sends a response to the author.
 */
 module.exports.message = (event, context, callback) => {
+  if(Math.random() >= config.ratio) { // we only treat a % of all messages
+    sendEmptySuccess(callback);
+    return;
+  }
+
   try {
     let body = JSON.parse(event.body || {});
     let message = body.message || {};
-
     let responseMsg = ruleProcessor.findResponse(message.text);
     if(responseMsg) {
-      let prob = Math.random();
-      if(prob <= config.ratio) {
-        console.log('preparing reply', 'ratio', config.ratio, prob, 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
-        bot.sendReply(message.chat.id, message.message_id, responseMsg).then(
-          result => { callback(null, { statusCode: 200 }); },
-          err => {
-            console.log(err);
-            callback(err, { statusCode: 500 });
-          }
-        );
-      } else {
-        console.log('match found, but response discarted', 'ratio', config.ratio, prob, 'chatId', message.chat.id, 'messageId', message.message_id, 'response', responseMsg);
-        callback(null, { statusCode: 200 });
-      }
-    } else {
-      callback(null, { statusCode: 200 });
+      let data = {
+        chatId: message.chat.id,
+        messageId: message.message_id,
+        text: responseMsg
+      };
+      console.log('Decided to reply', JSON.stringify(data));
+      bot.sendReplySync(data);
     }
   } catch(err) {
-    console.log(err);
-    callback(err, { statusCode: 500 });
+    sendError(callback, err, 500);
+    return;
   }
+
+  sendEmptySuccess(callback);
+}
+
+function sendEmptySuccess(callback) {
+  callback(null, { statusCode: 200 });
+}
+
+function sendError(callback, err, statusCode) {
+  callback(err, { statusCode: statusCode });
 }

@@ -19,5 +19,8 @@
   "license": "ISC",
   "dependencies": {
     "node-telegram-bot-api": "^0.28.0"
+  },
+  "devDependencies": {
+    "mock-require": "^2.0.2"
   }
 }
