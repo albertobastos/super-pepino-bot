@@ -7,6 +7,7 @@
  *      {{W}}   The matched input, capitalized.                                 input ==> Input
  *      {{w}}   The matched input, in lower case.                               input ==> input
  * - Exclusions (optional): exact words that should be excluded from this rule's matches. They will be checked in a case-insensitive way.
+ * - Ratio: specific response ratio (0 to 1) for inputs matching this rule. If omitted, config.defaultRatio will be used.
  */
 module.exports.rules = [
     {
@@ -16,7 +17,8 @@ module.exports.rules = [
     },
     {
         matchers:   [ suffix('(i|í)nco'), exact('5') ],
-        responses:  [ 'Qué fácil... ¡por el culo te la hinco!' ]
+        responses:  [ 'Qué fácil... ¡por el culo te la hinco!' ],
+        ratio:      1
     },
     /*
     {
