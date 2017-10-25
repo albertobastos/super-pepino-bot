@@ -1,13 +1,14 @@
 "use strict";
 
 const rules = require('./rules').rules;
+const config = require('./config');
 
 module.exports.findResponse = findResponse;
 
 /**
  * Given a message input, searches for a rule matching any text on it and returns one of the configured responses.
  */
-function findResponse(input) {
+function findResponse(input, ignoreRatio = false) {
     if(!input) return;
 
     for(let rule of rules) {
@@ -16,6 +17,11 @@ function findResponse(input) {
             if(match) { // match found...
                 let matchedWord = match[0].trim();
                 if(!isExclusion(rule, matchedWord)) { // ... and the matched word isn't excluded, we have a winner!
+                    let ratio = rule.ratio || config.defaultRatio;
+                    if(!ignoreRatio && Math.random() > ratio) {
+                        console.log('Response discarded due to ratio', matchedWord, ratio);
+                        return null; // no match because of ratio
+                    }
                     let responseTpl = rule.responses.pickRandom();
                     return fillResponse(responseTpl, matchedWord);
                 }
