@@ -8,7 +8,7 @@
  *      {{w}}   The matched input, in lower case.                               input ==> input
  * - Exclusions (optional): exact words that should be excluded from this rule's matches. They will be checked in a case-insensitive way.
  */
-module.exports = [
+module.exports.rules = [
     {
         matchers:   [ suffix('ino') ],
         responses:  [ '{{WQ}} ¡Agárrame el pepino!' ],
@@ -26,6 +26,15 @@ module.exports = [
     },
     */
 ];
+
+/**
+ * Set of inputs to test.
+ * <INPUT_MESSAGE>: true if a match is expected for that input.
+ */
+module.exports.tests = {
+    '¿Alguien conoce el camino?': true,
+    'Este texto no tiene rima': false
+};
 
 // Creates a RegExp-builder function that matches words ending with -suffix
 function suffix(suffix) {
