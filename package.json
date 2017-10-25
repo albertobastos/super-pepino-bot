@@ -8,7 +8,8 @@
     "set-hook": "node setBotWebhook",
     "deploy-dev": "serverless deploy -s dev",
     "deploy-prod": "serverless deploy -s prod",
-    "backup-local": "node backupLocalFiles"
+    "backup-local": "node syncLocalFiles --backup",
+    "restore-local": "node syncLocalFiles --restore"
   },
   "keywords": [
     "telegram",
