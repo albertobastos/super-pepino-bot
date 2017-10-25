@@ -25,6 +25,7 @@ function testRules() {
 
 function testHandler() {
     let botWasCalled = false;
+
     mock('./config', {
         ratio: 1
     });

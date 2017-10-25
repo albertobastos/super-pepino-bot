@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node test",
     "set-hook": "node setBotWebhook",
+    "package": "serverless package",
     "deploy-dev": "serverless deploy -s dev",
     "deploy-prod": "serverless deploy -s prod",
     "backup-local": "node syncLocalFiles --backup",

@@ -5,7 +5,7 @@ const config = require('./config');
 
 module.exports = {
     sendReply: sendReply,
-    sendReplySync: sendReplySync
+    //sendReplySync: sendReplySync
 }
 
 function sendReply({chatId, messageId, text}) {

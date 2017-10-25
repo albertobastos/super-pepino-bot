@@ -29,7 +29,8 @@ module.exports.message = (event, context, callback) => {
   }
 
   try {
-    let body = JSON.parse(event.body || {});
+    let body = event && event.body;
+    if(typeof body === 'string') { body = JSON.parse(body || '{}'); }
     let message = body.message || {};
     let responseMsg = ruleProcessor.findResponse(message.text);
     if(responseMsg) {
