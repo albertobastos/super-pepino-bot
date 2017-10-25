@@ -6,8 +6,9 @@
   "scripts": {
     "test": "node test",
     "set-hook": "node setBotWebhook",
-    "deploy": "serverless deploy",
-    "deploy-prod": "serverless deploy -s prod"
+    "deploy-dev": "serverless deploy -s dev",
+    "deploy-prod": "serverless deploy -s prod",
+    "backup-local": "node backupLocalFiles"
   },
   "keywords": [
     "telegram",
