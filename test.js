@@ -27,7 +27,7 @@ function testHandler() {
     let botWasCalled = false;
 
     mock('./config', {
-        ratio: 1
+        defaultRatio: 1
     });
     mock('./bot', {
         sendReply: () => { botWasCalled = true; return Promise.resolve('dummy_response'); }

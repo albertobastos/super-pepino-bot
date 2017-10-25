@@ -23,7 +23,7 @@ module.exports.ping = (event, context, callback) => {
   matches any rule, sends a response to the author.
 */
 module.exports.message = (event, context, callback) => {
-  if(Math.random() >= config.ratio) { // we only treat a % of all messages
+  if(Math.random() >= config.defaultRatio) { // we only treat a % of all messages
     sendEmptySuccess(callback);
     return;
   }
