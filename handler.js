@@ -38,15 +38,18 @@ module.exports.message = (event, context, callback) => {
         messageId: message.message_id,
         text: responseMsg
       };
-      console.log('Decided to reply', JSON.stringify(data));
-      bot.sendReplySync(data);
+      bot.sendReply(data).then(
+        result => sendEmptySuccess(callback),
+        err => sendError(callback, err, 500)
+      );
+    } else {
+      sendEmptySuccess(callback);
     }
   } catch(err) {
     sendError(callback, err, 500);
     return;
   }
 
-  sendEmptySuccess(callback);
 }
 
 function sendEmptySuccess(callback) {

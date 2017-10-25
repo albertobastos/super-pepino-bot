@@ -29,7 +29,7 @@ function testHandler() {
         ratio: 1
     });
     mock('./bot', {
-        sendReplySync: () => { botWasCalled = true; }
+        sendReply: () => { botWasCalled = true; return Promise.resolve('dummy_response'); }
     });
     const handler = require('./handler');
     
@@ -53,5 +53,4 @@ function testHandler() {
 
     console.log('Handler:\n');
     handler.message(event, null, callback); // context is not used
-    console.log();
 }

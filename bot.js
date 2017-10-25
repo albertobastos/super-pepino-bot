@@ -17,6 +17,9 @@ function sendReply({chatId, messageId, text}) {
     ); // returns a promise!
 }
 
+// doesn't work on Node 6.10 :-(
+/*
 async function sendReplySync(data) {
     return await sendReply(data);
 }
+*/
