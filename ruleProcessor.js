@@ -19,7 +19,7 @@ function findResponse(input, ignoreRatio = false) {
                 if(!isExclusion(rule, matchedWord)) { // ... and the matched word isn't excluded, we have a winner!
                     let ratio = rule.ratio || config.defaultRatio;
                     if(!ignoreRatio && Math.random() > ratio) {
-                        console.log('Response discarded due to ratio', matchedWord, ratio);
+                        //console.log('Response discarded due to ratio', matchedWord, ratio);
                         return null; // no match because of ratio
                     }
                     let responseTpl = rule.responses.pickRandom();

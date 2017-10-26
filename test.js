@@ -16,7 +16,7 @@ function testRules() {
     const inputs = require('./rules').tests;
     const ruleProcessor = require('./ruleProcessor');
 
-    console.log('Rules:\n');
+    console.log('Rules:');
     let someError = false;
     Object.keys(inputs).forEach(input => {
         let response = ruleProcessor.findResponse(input, true); // ignore ratio!
@@ -28,7 +28,6 @@ function testRules() {
         }
     });
     !someError && console.log('[OK]\t', 'All test inputs behave as expected');
-    console.log();
 
     mock.stopAll();
 }
@@ -47,7 +46,7 @@ function testRatio100() {
     mock.reRequire('./rules');
     mock.reRequire('./ruleProcessor');
 
-    console.log('Ratio 100:\n');
+    console.log('Ratio 100:');
         
     let findResponse = require('./ruleProcessor').findResponse;
     let responses = 10;
@@ -60,7 +59,6 @@ function testRatio100() {
     } else {
         console.log('[OK]\t', 'all times responded');
     }
-    console.log();
 
     mock.stopAll();
 }
@@ -79,7 +77,7 @@ function testRatio25() {
     mock.reRequire('./rules');
     mock.reRequire('./ruleProcessor');
 
-    console.log('Ratio 100:\n');
+    console.log('Ratio 25:');
         
     let findResponse = require('./ruleProcessor').findResponse;
     let responses = 0;
@@ -87,12 +85,11 @@ function testRatio25() {
         if(findResponse(`test ${str} test`)) responses++;
     });
 
-    if(responses < 20 || responses > 40) {
+    if(responses < 10 || responses > 30) {
         console.log('[NOOK]\t', responses, 'times out of 100 responded, does not look like 25%');
     } else {
         console.log('[OK]\t', responses, 'times out of 100 responded');
     }
-    console.log();
 
     mock.stopAll();
 }
@@ -142,6 +139,6 @@ function testHandler() {
         mock.stopAll();
     };
 
-    console.log('Handler:\n');
+    console.log('Handler:');
     handler.message(event, null, callback); // context is not used
 }
