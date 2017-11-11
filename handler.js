@@ -42,7 +42,9 @@ module.exports.message = (event, context, callback) => {
       sendEmptySuccess(callback);
     }
   } catch(err) {
-    sendError(callback, err, 500);
+    console.error('error on main handler', err);
+    //sendError(callback, err, 500);
+    sendEmptySuccess(callback); // Telegram retries all messages that returned a 500, so we better just ignore it
     return;
   }
 
